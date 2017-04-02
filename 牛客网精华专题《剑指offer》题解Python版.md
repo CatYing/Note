@@ -93,30 +93,55 @@ Author: catying
 
 	* 输入二叉树的前序和中序，输出该二叉树的根节点
 
-	* 前序第一位是根节点，在中序中找到根节点，根节点左边即是左子树，右边即是右子树。
-
-	```python
-	# -*- coding:utf-8 -*-
-	# class TreeNode:
-	#     def __init__(self, x):
-	#         self.val = x
-	#         self.left = None
-	#         self.right = None
-	class Solution:
-	    # 返回构造的TreeNode根节点
-	    def reConstructBinaryTree(self, pre, tin):
-	        # write code here
-	        if len(pre) == 0:
-	            return None
-	        elif len(pre) == 1:
-	            return TreeNode(pre[0])
-	        else:
-	            root = TreeNode(pre[0])
-	            root.left = self.reConstructBinaryTree(pre=pre[1:tin.index(pre[0])+1], tin=tin[:tin.index(pre[0])])
-	            root.right = self.reConstructBinaryTree(pre=pre[tin.index(pre[0])+1:], tin=tin[tin.index(pre[0])+1:])
-	            return root
-	```
-	嗯……看着很吓人，其实思路很清晰对不对，而且题目也说了不会有重复数字，不用index函数真是浪费啊（逃
+		* 前序第一位是根节点，在中序中找到根节点，根节点左边即是左子树，右边即是右子树。
 	
+		```python
+		# -*- coding:utf-8 -*-
+		# class TreeNode:
+		#     def __init__(self, x):
+		#         self.val = x
+		#         self.left = None
+		#         self.right = None
+		class Solution:
+		    # 返回构造的TreeNode根节点
+		    def reConstructBinaryTree(self, pre, tin):
+		        # write code here
+		        if len(pre) == 0:
+		            return None
+		        elif len(pre) == 1:
+		            return TreeNode(pre[0])
+		        else:
+		            root = TreeNode(pre[0])
+		            root.left = self.reConstructBinaryTree(pre=pre[1:tin.index(pre[0])+1], tin=tin[:tin.index(pre[0])])
+		            root.right = self.reConstructBinaryTree(pre=pre[tin.index(pre[0])+1:], tin=tin[tin.index(pre[0])+1:])
+		            return root
+		```
+		嗯……看着很吓人，其实思路很清晰对不对，而且题目也说了不会有重复数字，不用index函数真是浪费啊（逃
+
+5. 两个栈实现队列
+	* 用两个栈来实现一个队列，完成队列的Push和Pop操作。 队列中的元素为int类型。
+		* 栈1用来入队，栈2用来出队
+		* 出队时如果栈2为空，则出栈所有栈1内容后入栈栈2，再出队
+		
+		```python
+		# -*- coding:utf-8 -*-
+		class Solution:
+		    def __init__(self):
+		        self.stack1 = []
+		        self.stack2 = []
+		    def push(self, node):
+		        # write code here
+		        self.stack1.append(node)
+		    def pop(self):
+		        # return xx
+		        if self.stack2:
+		            return self.stack2.pop()
+		        elif not self.stack1:
+		            return None
+		        else:
+		            while self.stack1:
+		                self.stack2.append(self.stack1.pop())
+		            return self.stack2.pop()
+		```
 
 
