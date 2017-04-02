@@ -65,28 +65,58 @@ Author: catying
 
 	* 输入一个链表，从尾到头打印链表每个节点的值
 		* 从头到尾遍历链表，存到列表中，反向输出
-
 		
 		```python
-			# -*- coding:utf-8 -*-
-			# class ListNode:
-			#     def __init__(self, x):
-			#         self.val = x
-			#         self.next = None
+		# -*- coding:utf-8 -*-
+		# class ListNode:
+		#     def __init__(self, x):
+		#         self.val = x
+		#         self.next = None
 
-			class Solution:
-			    # 返回从尾部到头部的列表值序列，例如[1,2,3]
-			    def printListFromTailToHead(self, listNode):
-			        # write code here
-			        result = []
-			        if listNode is None:
-			            return result
-			        else:
-			            while listNode.next is not None:
-			                result.append(listNode.val)
-			                listNode = listNode.next
-			            result.append(listNode.val)
-			            return result[::-1]
-		
+		class Solution:
+		    # 返回从尾部到头部的列表值序列，例如[1,2,3]
+		    def printListFromTailToHead(self, listNode):
+		        # write code here
+		        result = []
+		        if listNode is None:
+		            return result
+		        else:
+		            while listNode.next is not None:
+		                result.append(listNode.val)
+		                listNode = listNode.next
+		            result.append(listNode.val)
+		            return result[::-1]
 		```
 		* 严重怀疑牛客网的评测系统有问题……同一份代码隔了十分钟提交就过了
+
+4. 重建二叉树
+
+	* 输入二叉树的前序和中序，输出该二叉树的根节点
+
+	* 前序第一位是根节点，在中序中找到根节点，根节点左边即是左子树，右边即是右子树。
+
+	```python
+	# -*- coding:utf-8 -*-
+	# class TreeNode:
+	#     def __init__(self, x):
+	#         self.val = x
+	#         self.left = None
+	#         self.right = None
+	class Solution:
+	    # 返回构造的TreeNode根节点
+	    def reConstructBinaryTree(self, pre, tin):
+	        # write code here
+	        if len(pre) == 0:
+	            return None
+	        elif len(pre) == 1:
+	            return TreeNode(pre[0])
+	        else:
+	            root = TreeNode(pre[0])
+	            root.left = self.reConstructBinaryTree(pre=pre[1:tin.index(pre[0])+1], tin=tin[:tin.index(pre[0])])
+	            root.right = self.reConstructBinaryTree(pre=pre[tin.index(pre[0])+1:], tin=tin[tin.index(pre[0])+1:])
+	            return root
+	```
+	嗯……看着很吓人，其实思路很清晰对不对，而且题目也说了不会有重复数字，不用index函数真是浪费啊（逃
+	
+
+
