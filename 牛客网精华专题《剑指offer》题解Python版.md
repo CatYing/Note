@@ -143,5 +143,45 @@ Author: catying
 		                self.stack2.append(self.stack1.pop())
 		            return self.stack2.pop()
 		```
+6. 旋转数组的最小值
+	* 把一个数组最开始的若干个元素搬到数组的末尾，我们称之为数组的旋转。
+输入一个非递减排序的数组的一个旋转，输出旋转数组的最小元素。
+例如数组{3,4,5,1,2}为{1,2,3,4,5}的一个旋转，该数组的最小值为1。
+NOTE：给出的所有元素都大于0，若数组大小为0，请返回0。
 
+		* 如果你不是那么机智，可以直接找分界点，然后返回，这样测试机是可以通过的→_→
+
+		```python
+		# -*- coding:utf-8 -*-
+		class Solution:
+		    def minNumberInRotateArray(self, rotateArray):
+		        # write code here
+		        if rotateArray.__len__() == 0:
+		            return 0
+		        else:
+		            for i in xrange(0, len(rotateArray)-1):
+		                if rotateArray[i] > rotateArray[i+1]:
+		                    return rotateArray[i+1]
+		            return rotateArray[0]
+		```
+		
+		* 然鹅机智的我早已看穿了一切
+		
+		```python
+		# -*- coding:utf-8 -*-
+		class Solution:
+		    def minNumberInRotateArray(self, rotateArray):
+		        # write code here
+		        if rotateArray.__len__() == 0:
+		            return 0
+		        else:
+		            return min(rotateArray)
+		```
+		
+		* 人生苦短啊大兄弟们！（摊手
+		* 咳，下面我们来正经的……
+		* 如果一个非递减数组经过了非完全旋转，__那么他的第一个数一定大于最后一个数__，基于这样的想法，我们可以利用二分查找的思想：left, right, mid。
+		* 如果right > mid，那么最小值一定在左半部分
+		* 如果right < mid，那么最小值一定在右半部分
+		* 
 
