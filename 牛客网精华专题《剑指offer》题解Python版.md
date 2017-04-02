@@ -1,9 +1,11 @@
 # 牛客网精华专题《剑指offer》题解Python版
 Author: catying
 
-1. 在一个二维数组中，每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。请完成一个函数，输入这样的一个二维数组和一个整数，判断数组中是否含有该整数。
+1. 二维数组的查找
 
-	* 从左下角开始查找，如果目标大于当前，则目标在当前右边；如果目标小于当前，则目标在当前上边
+	* 在一个二维数组中，每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。请完成一个函数，输入这样的一个二维数组和一个整数，判断数组中是否含有该整数。
+	
+		从左下角开始查找，如果目标大于当前，则目标在当前右边；如果目标小于当前，则目标在当前上边
 
 		```python
 		# -*- coding:utf-8 -*-
@@ -31,30 +33,60 @@ Author: catying
 
 	* 请实现一个函数，将一个字符串中的空格替换成“%20”。例如，当字符串为We Are Happy.则经过替换之后的字符串为We%20Are%20Happy。
 	
-	咳，如果你不怕被打的话，可以直接用python这么做
+		咳，如果你不怕被打的话，可以直接用python这么做
+		
+		```python
+		# -*- coding:utf-8 -*-
+		class Solution:
+		    # s 源字符串
+		    def replaceSpace(self, s):
+		        # write code here
+		        return s.replace(" ", "%20")
+		```
+		突如其来的骚，闪了老子的腰.jpg
 	
-	```python
-	# -*- coding:utf-8 -*-
-	class Solution:
-	    # s 源字符串
-	    def replaceSpace(self, s):
-	        # write code here
-	        return s.replace(" ", "%20")
-	```
-	突如其来的骚，闪了老子的腰.jpg
+		那么能不能稍微给力些呢
 	
-	那么能不能稍微给力些呢
-	
-	```python
-	# -*- coding:utf-8 -*-
-	class Solution:
-	    # s 源字符串
-	    def replaceSpace(self, s):
-	        # write code here
-	        token_list = s.split(" ")
-	        string = "%20".join(token_list)
-	        return string
-	
-	```
-	
-	嗯…就酱！没毛病哦里给！
+		```python
+		# -*- coding:utf-8 -*-
+		class Solution:
+		    # s 源字符串
+		    def replaceSpace(self, s):
+		        # write code here
+		        token_list = s.split(" ")
+		        string = "%20".join(token_list)
+		        return string
+		
+		```
+		
+		嗯…就酱！没毛病哦里给！
+
+3. 从尾到头打印链表
+
+	* 输入一个链表，从尾到头打印链表每个节点的值
+		* 从头到尾遍历链表，存到列表中，反向输出
+
+		
+		```python
+			# -*- coding:utf-8 -*-
+			# class ListNode:
+			#     def __init__(self, x):
+			#         self.val = x
+			#         self.next = None
+
+			class Solution:
+			    # 返回从尾部到头部的列表值序列，例如[1,2,3]
+			    def printListFromTailToHead(self, listNode):
+			        # write code here
+			        result = []
+			        if listNode is None:
+			            return result
+			        else:
+			            while listNode.next is not None:
+			                result.append(listNode.val)
+			                listNode = listNode.next
+			            result.append(listNode.val)
+			            return result[::-1]
+		
+		```
+		* 严重怀疑牛客网的评测系统有问题……同一份代码隔了十分钟提交就过了
