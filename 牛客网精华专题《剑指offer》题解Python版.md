@@ -183,5 +183,22 @@ NOTE：给出的所有元素都大于0，若数组大小为0，请返回0。
 		* 如果一个非递减数组经过了非完全旋转，__那么他的第一个数一定大于最后一个数__，基于这样的想法，我们可以利用二分查找的思想：left, right, mid。
 		* 如果right > mid，那么最小值一定在左半部分
 		* 如果right < mid，那么最小值一定在右半部分
-		* 
-
+		* 如此继续查找就好
+7. 快速斐波那契数列
+    * 迭代一定会超时，还不如直接循环算
+    
+    ```python
+    
+    # -*- coding:utf-8 -*-
+    class Solution:
+        def Fibonacci(self, n):
+            # write code here
+            if n in (0, 1):
+                return n
+            else:
+                p ,q = 1, 1
+                for i in range(2, n):
+                    p ,q = q, p + q
+                return q
+    
+    ```
